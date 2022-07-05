@@ -34,21 +34,25 @@ keymap("n", "<leader>coa", ":e ~/.config/alacritty/alacritty.yml<CR>", default_o
 keymap("n", "<leader>cot", ":e ~/.tmux.conf", default_options)
 
 -- buffer mappings
+buf_builtin = "<cmd>lua require('telescope.builtin').buffers()<cr>"
 keymap("n", "<leader>bl", ":e#<cr>", default_options)
 keymap("n", "<Leader>bp", ":bp<cr>", default_options)
 keymap("n", "<leader>bn", ":bn<cr>", default_options)
 keymap("n", "<leader>bf", ":bf<cr>", default_options)
 keymap("n", "<leader>bl", ":bl<cr>", default_options)
-keymap("n", "<leader>bb", "<cmd>lua require('telescope.builtin').buffers()<cr>", default_options)
+keymap("n", "<leader>bb", buf_builtin, default_options)
 keymap("n", "<leader>btd", ":e ~/buffers/todo<CR>", default_options)
 keymap("n", "<leader>bsh", ":e ~/buffers/scratch<CR>", default_options)
 
 -- file mappings
-keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", default_options)
-keymap("n", "<leader>fs", "<esc>:w<cr>", default_options)
-keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", default_options)
---"nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files({find_command={"rg", ignore=true, hidden=true}, ignore=true, hidden=true, prompt_prefix="üîç"})<cr>
-keymap("n", "<leader>fp", "<C-^>", default_options)
+live_grep_fn = "<cmd>lua require('telescope.builtin').live_grep()<cr>"
+find_file_fn = "<cmd>lua require('telescope.builtin').find_files()<cr>"
+keymap("n", "<leader>fg", live_grep_fn, default_options)			-- <l>fg => file grep
+keymap("n", "<leader>fs", "<esc>:w<cr>", default_options)			-- <l>fs => file save
+keymap("n", "<leader>ff", find_file_fn, default_options)			-- <l>ff => file find
+keymap("n", "<leader>fr", ":let @+ = expand('%')<cr>", default_options)		-- <l>fr => file relative path in clipboard	
+keymap("n", "<leader>fp", ":let @+ = expand('%:p')<cr>", default_options)	-- <l>fp => file path in clipboard
+keymap("n", "<leader>fn", ":let @+ = expand('%:t')<cr>", default_options)	-- <l>fn => file name in clipboard
 
 -- Go to tab by number
 -- noremap <leader>1 1gt
