@@ -19,30 +19,34 @@ keymap("n", "<Space>", "<NOP>", default_options)
 
 -- dashboard
 	--dashboard
-keymap("n", "<leader>db", ":Startify<cr>", default_options) --show dashboard
+keymap("n", "<leader>db", ":Startify<cr>", default_options) 			-- <l>db   => dashboard
 	--session
-keymap("n", "<leader>sl", ":SLoad<cr>", default_options)    --load a session
-keymap("n", "<leader>ss", ":SSave<cr>", default_options)    --save a session
-keymap("n", "<leader>sd", ":SDelete<cr>", default_options)  --delete a session
-keymap("n", "<leader>sc", ":SClose<cr>", default_options)   --close current session
+keymap("n", "<leader>sl", ":SLoad<cr>", default_options)    			-- <l>sl   => session load 
+keymap("n", "<leader>ss", ":SSave<cr>", default_options)    			-- <l>ss   => session save 
+keymap("n", "<leader>sd", ":SDelete<cr>", default_options)  			-- <l>sd   => session delete
+keymap("n", "<leader>sc", ":SClose<cr>", default_options)   			-- <l>sc   => session close
 
 keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", default_options)
 
 -- config open file mappings
-keymap("n", "<leader>cov", ":e ~/.config/nvim/init.vim<CR>", default_options)
-keymap("n", "<leader>coa", ":e ~/.config/alacritty/alacritty.yml<CR>", default_options)
-keymap("n", "<leader>cot", ":e ~/.tmux.conf", default_options)
+open_vim_config_cmd = ":e ~/.config/nvim/init.vim<CR>"
+open_alacritty_config_cmd = ":e ~/.config/alacritty/alacritty.yml<CR>"
+open_tmux_config_cmd = ":e ~/.tmux.conf"
+
+keymap("n", "<leader>cov", open_vim_config_cmd, default_options)		-- <l>cov  => config open vim
+keymap("n", "<leader>coa", open_alacritty_config_cmd, default_options)		-- <l>coa  => config open alacritty
+keymap("n", "<leader>cot", open_tmux_config_cmd, default_options)		-- <l>cot  => config open tmux
 
 -- buffer mappings
 buf_builtin = "<cmd>lua require('telescope.builtin').buffers()<cr>"
-keymap("n", "<leader>bl", ":e#<cr>", default_options)
-keymap("n", "<Leader>bp", ":bp<cr>", default_options)
-keymap("n", "<leader>bn", ":bn<cr>", default_options)
-keymap("n", "<leader>bf", ":bf<cr>", default_options)
-keymap("n", "<leader>bl", ":bl<cr>", default_options)
-keymap("n", "<leader>bb", buf_builtin, default_options)
-keymap("n", "<leader>btd", ":e ~/buffers/todo<CR>", default_options)
-keymap("n", "<leader>bsh", ":e ~/buffers/scratch<CR>", default_options)
+keymap("n", "<leader>bn", ":bn<cr>", default_options)				-- <l>bn   => buffer next
+keymap("n", "<Leader>bp", ":bp<cr>", default_options)				-- <l>bp   => buffer previous
+keymap("n", "<leader>bf", ":bf<cr>", default_options)				-- <l>bf   => buffer first
+keymap("n", "<leader>bl", ":bl<cr>", default_options)				-- <l>bl   => buffer last
+keymap("n", "<leader>bl", ":e#<cr>", default_options)				-- <l>bl   => buffer last
+keymap("n", "<leader>bb", buf_builtin, default_options)				-- <l>bb   => buffer 
+keymap("n", "<leader>btd", ":e ~/buffers/todo<CR>", default_options)		-- <l>btd  => buffer todo
+keymap("n", "<leader>bsc", ":e ~/buffers/scratch<CR>", default_options)		-- <l>bsc  => buffer scratch
 
 -- file mappings
 live_grep_fn = "<cmd>lua require('telescope.builtin').live_grep()<cr>"
@@ -53,6 +57,12 @@ keymap("n", "<leader>ff", find_file_fn, default_options)			-- <l>ff => file find
 keymap("n", "<leader>fr", ":let @+ = expand('%')<cr>", default_options)		-- <l>fr => file relative path in clipboard	
 keymap("n", "<leader>fp", ":let @+ = expand('%:p')<cr>", default_options)	-- <l>fp => file path in clipboard
 keymap("n", "<leader>fn", ":let @+ = expand('%:t')<cr>", default_options)	-- <l>fn => file name in clipboard
+
+-- debugger mappings
+continue_fn 		= ":lua require'dap'.continue()<cr>"
+toggle_breakpoint_fn 	= ":lua require'dap'.toggle_breakpoint()<cr>"
+keymap("n", "<F5>", continue_fn, default_options)				
+keymap("n", "<leader>b", toggle_breakpoint_fn, default_options)			-- <l>b    => debug breakpoint
 
 -- Go to tab by number
 -- noremap <leader>1 1gt

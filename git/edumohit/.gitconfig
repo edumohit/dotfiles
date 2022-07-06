@@ -1,0 +1,9 @@
+[user]
+email = edumohitpawar88@gmail.com
+name = Mohit Pawar 
+ 
+[github]
+user = "mohit"
+ 
+[core]
+sshCommand = "ssh -i ~/.ssh/edumohit_id_rsa"

@@ -1,0 +1,14 @@
+[includeIf "gitdir:~/edumohit/"] # include for all .git projects under personnal/ 
+path = ~/edumohit/.gitconfig
+ 
+[user]
+	name = mohit pawar
+	email = mohit@edjx.io
+[core]
+	editor = vi
+[color]
+	ui = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
